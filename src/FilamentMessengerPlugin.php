@@ -1,15 +1,15 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace MathieuBretaud\FilamentMessenger;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-class SkeletonPlugin implements Plugin
+class FilamentMessengerPlugin implements Plugin
 {
     public function getId(): string
     {
-        return 'skeleton';
+        return 'filament-messenger';
     }
 
     public function register(Panel $panel): void
