@@ -10,11 +10,11 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
+use MathieuBretaud\FilamentMessenger\Commands\FilamentMessengerCommand;
+use MathieuBretaud\FilamentMessenger\Testing\TestsFilamentMessenger;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use MathieuBretaud\FilamentMessenger\Commands\FilamentMessengerCommand;
-use MathieuBretaud\FilamentMessenger\Testing\TestsFilamentMessenger;
 
 class FilamentMessengerServiceProvider extends PackageServiceProvider
 {
