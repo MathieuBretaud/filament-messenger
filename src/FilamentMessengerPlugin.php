@@ -4,6 +4,7 @@ namespace MathieuBretaud\FilamentMessenger;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use MathieuBretaud\FilamentMessenger\Filament\Pages\Messages;
 
 class FilamentMessengerPlugin implements Plugin
 {
@@ -14,7 +15,9 @@ class FilamentMessengerPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        //
+        $panel->pages([
+            Messages::class,
+        ]);
     }
 
     public function boot(Panel $panel): void

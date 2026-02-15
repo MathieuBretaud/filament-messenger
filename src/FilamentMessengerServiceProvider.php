@@ -10,10 +10,13 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use MathieuBretaud\FilamentMessenger\Commands\FilamentMessengerCommand;
+use MathieuBretaud\FilamentMessenger\Livewire\Messages\Inbox;
+use MathieuBretaud\FilamentMessenger\Livewire\Messages\Messages;
+use MathieuBretaud\FilamentMessenger\Livewire\Messages\Search;
 use MathieuBretaud\FilamentMessenger\Testing\TestsFilamentMessenger;
 
 class FilamentMessengerServiceProvider extends PackageServiceProvider
@@ -62,6 +65,11 @@ class FilamentMessengerServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
+        // Register Livewire components
+        Livewire::component('inbox', Inbox::class);
+        Livewire::component('messages', Messages::class);
+        Livewire::component('search', Search::class);
+
         // Asset Registration
         FilamentAsset::register(
             $this->getAssets(),
@@ -111,9 +119,7 @@ class FilamentMessengerServiceProvider extends PackageServiceProvider
      */
     protected function getCommands(): array
     {
-        return [
-            FilamentMessengerCommand::class,
-        ];
+        return [];
     }
 
     /**
@@ -146,7 +152,8 @@ class FilamentMessengerServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_filament-messenger_table',
+            'create_inboxes_table',
+            'create_messages_table',
         ];
     }
 }
