@@ -2,17 +2,14 @@
 
 namespace MathieuBretaud\FilamentMessenger\Livewire\Messages;
 
-use MathieuBretaud\FilamentMessenger\Enums\InboxStatus;
-use MathieuBretaud\FilamentMessenger\Livewire\Traits\CanMarkAsRead;
-use MathieuBretaud\FilamentMessenger\Livewire\Traits\HasPollInterval;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Schemas\Schema;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -23,10 +20,17 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
+use MathieuBretaud\FilamentMessenger\Enums\InboxStatus;
+use MathieuBretaud\FilamentMessenger\Livewire\Traits\CanMarkAsRead;
+use MathieuBretaud\FilamentMessenger\Livewire\Traits\HasPollInterval;
 
 class Messages extends Component implements HasActions, HasForms
 {
-    use CanMarkAsRead, HasPollInterval, InteractsWithActions, InteractsWithForms, WithPagination;
+    use CanMarkAsRead;
+    use HasPollInterval;
+    use InteractsWithActions;
+    use InteractsWithForms;
+    use WithPagination;
 
     public $selectedConversation;
 
@@ -313,6 +317,7 @@ class Messages extends Component implements HasActions, HasForms
     public function validateMessage(): bool
     {
         $rawData = $this->form->getRawState();
+
         return empty($rawData['message']);
     }
 
@@ -323,7 +328,7 @@ class Messages extends Component implements HasActions, HasForms
      * the messages interface, which includes the chat box and
      * input area for sending messages.
      */
-    public function render(): Application|Factory|View|\Illuminate\View\View
+    public function render(): Application | Factory | View | \Illuminate\View\View
     {
         return view('filament-messenger::livewire.messages.messages');
     }

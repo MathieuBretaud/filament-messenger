@@ -2,10 +2,6 @@
 
 namespace MathieuBretaud\FilamentMessenger\Livewire\Messages;
 
-use MathieuBretaud\FilamentMessenger\Enums\InboxStatus;
-use MathieuBretaud\FilamentMessenger\Livewire\Traits\CanMarkAsRead;
-use MathieuBretaud\FilamentMessenger\Livewire\Traits\CanValidateFiles;
-use MathieuBretaud\FilamentMessenger\Livewire\Traits\HasPollInterval;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -19,10 +15,18 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use MathieuBretaud\FilamentMessenger\Enums\InboxStatus;
+use MathieuBretaud\FilamentMessenger\Livewire\Traits\CanMarkAsRead;
+use MathieuBretaud\FilamentMessenger\Livewire\Traits\CanValidateFiles;
+use MathieuBretaud\FilamentMessenger\Livewire\Traits\HasPollInterval;
 
 class Inbox extends Component implements HasActions, HasForms
 {
-    use CanMarkAsRead, CanValidateFiles, HasPollInterval, InteractsWithActions, InteractsWithForms;
+    use CanMarkAsRead;
+    use CanValidateFiles;
+    use HasPollInterval;
+    use InteractsWithActions;
+    use InteractsWithForms;
 
     public $conversations;
 
@@ -246,16 +250,17 @@ class Inbox extends Component implements HasActions, HasForms
                 Forms\Components\Select::make('recipient_id')
                     ->label(__('filament-messenger::messages.recipient'))
                     ->searchable()
-                    ->getSearchResultsUsing(fn (string $search): array => $userModel::query()
-                        ->where('id', '!=', Auth::id())
-                        ->where(function ($query) use ($search) {
-                            $query->where('name', 'like', "%{$search}%")
-                                ->orWhere('email', 'like', "%{$search}%");
-                        })
-                        ->limit(50)
-                        ->get()
-                        ->mapWithKeys(fn ($user) => [$user->id => $user->name])
-                        ->toArray()
+                    ->getSearchResultsUsing(
+                        fn (string $search): array => $userModel::query()
+                            ->where('id', '!=', Auth::id())
+                            ->where(function ($query) use ($search) {
+                                $query->where('name', 'like', "%{$search}%")
+                                    ->orWhere('email', 'like', "%{$search}%");
+                            })
+                            ->limit(50)
+                            ->get()
+                            ->mapWithKeys(fn ($user) => [$user->id => $user->name])
+                            ->toArray()
                     )
                     ->getOptionLabelUsing(fn ($value): ?string => $userModel::find($value)?->name)
                     ->required(),
@@ -283,7 +288,7 @@ class Inbox extends Component implements HasActions, HasForms
                     'notified' => [Auth::id()],
                 ]);
 
-                redirect(\MathieuBretaud\FilamentMessenger\Filament\Pages\Messages::getUrl(['id' => $inbox->getKey()]).'?tab=sent');
+                redirect(\MathieuBretaud\FilamentMessenger\Filament\Pages\Messages::getUrl(['id' => $inbox->getKey()]) . '?tab=sent');
             });
     }
 
@@ -294,7 +299,7 @@ class Inbox extends Component implements HasActions, HasForms
      * the inbox interface, which includes the list of conversations
      * and controls for interacting with them.
      */
-    public function render(): Application|Factory|View|\Illuminate\View\View
+    public function render(): Application | Factory | View | \Illuminate\View\View
     {
         return view('filament-messenger::livewire.messages.inbox');
     }

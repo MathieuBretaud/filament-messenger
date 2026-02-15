@@ -2,7 +2,6 @@
 
 namespace MathieuBretaud\FilamentMessenger\Livewire\Messages;
 
-use MathieuBretaud\FilamentMessenger\Models\Message;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -10,6 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use MathieuBretaud\FilamentMessenger\Models\Message;
 
 class Search extends Component
 {
@@ -67,7 +67,7 @@ class Search extends Component
      *
      * The component displays a list of messages that match the search query.
      */
-    public function render(): Application|Factory|View|\Illuminate\View\View
+    public function render(): Application | Factory | View | \Illuminate\View\View
     {
         return view('filament-messenger::livewire.messages.search', [
             'messages' => $this->messages,

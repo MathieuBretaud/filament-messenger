@@ -121,6 +121,7 @@ class Inbox extends Model
                 }
 
                 $userModel = config('auth.providers.users.model');
+
                 return $otherUserId ? $userModel::where('id', $otherUserId)->get() : collect();
             }
         );

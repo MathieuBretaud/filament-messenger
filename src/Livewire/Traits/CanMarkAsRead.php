@@ -2,8 +2,8 @@
 
 namespace MathieuBretaud\FilamentMessenger\Livewire\Traits;
 
-use MathieuBretaud\FilamentMessenger\Models\Message;
 use Illuminate\Support\Facades\Auth;
+use MathieuBretaud\FilamentMessenger\Models\Message;
 
 trait CanMarkAsRead
 {

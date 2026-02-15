@@ -2,13 +2,13 @@
 
 namespace MathieuBretaud\FilamentMessenger\Filament\Pages;
 
-use MathieuBretaud\FilamentMessenger\Enums\InboxStatus;
-use MathieuBretaud\FilamentMessenger\Models\Inbox;
 use Filament\Pages\Page;
 use Filament\Panel;
 use Filament\Support\Enums\Width;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\Auth;
+use MathieuBretaud\FilamentMessenger\Enums\InboxStatus;
+use MathieuBretaud\FilamentMessenger\Models\Inbox;
 
 class Messages extends Page
 {
@@ -23,7 +23,7 @@ class Messages extends Page
      */
     public static function getSlug(?Panel $panel = null): string
     {
-        return config('filament-messenger.slug').'/{id?}';
+        return config('filament-messenger.slug') . '/{id?}';
     }
 
     /**
@@ -72,7 +72,7 @@ class Messages extends Page
      *
      * @return string|array|null The color of the navigation badge.
      */
-    public static function getNavigationBadgeColor(): string|array|null
+    public static function getNavigationBadgeColor(): string | array | null
     {
         return parent::getNavigationBadgeColor();
     }
@@ -123,7 +123,7 @@ class Messages extends Page
      *
      * @return string|Htmlable|null The navigation icon or null if not set.
      */
-    public static function getNavigationIcon(): string|Htmlable|null
+    public static function getNavigationIcon(): string | Htmlable | null
     {
         return config('filament-messenger.navigation.navigation_icon');
     }
@@ -178,7 +178,7 @@ class Messages extends Page
      *
      * @return \Filament\Support\Enums\Width|string|null The maximum content width.
      */
-    public function getMaxContentWidth(): Width|string|null
+    public function getMaxContentWidth(): Width | string | null
     {
         return config('filament-messenger.max_content_width');
     }
@@ -186,7 +186,7 @@ class Messages extends Page
     /**
      * Gets the heading of the messages page.
      */
-    public function getHeading(): string|Htmlable
+    public function getHeading(): string | Htmlable
     {
         return '';
     }

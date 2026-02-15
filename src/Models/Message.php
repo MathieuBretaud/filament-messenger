@@ -2,19 +2,19 @@
 
 namespace MathieuBretaud\FilamentMessenger\Models;
 
-use MathieuBretaud\FilamentMessenger\Enums\MediaCollectionType;
-use MathieuBretaud\FilamentMessenger\Models\Inbox;
-use MathieuBretaud\FilamentMessenger\Models\Traits\HasMediaConvertionRegistrations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use MathieuBretaud\FilamentMessenger\Enums\MediaCollectionType;
+use MathieuBretaud\FilamentMessenger\Models\Traits\HasMediaConvertionRegistrations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Message extends Model implements HasMedia
 {
-    use HasMediaConvertionRegistrations, SoftDeletes;
+    use HasMediaConvertionRegistrations;
+    use SoftDeletes;
 
     protected $table = 'messages';
 

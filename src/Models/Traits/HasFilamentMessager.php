@@ -2,8 +2,8 @@
 
 namespace MathieuBretaud\FilamentMessenger\Models\Traits;
 
-use MathieuBretaud\FilamentMessenger\Models\Inbox;
 use Illuminate\Database\Eloquent\Builder;
+use MathieuBretaud\FilamentMessenger\Models\Inbox;
 
 trait HasFilamentMessager
 {
@@ -16,10 +16,10 @@ trait HasFilamentMessager
             ->where(function ($query) {
                 $query->where('creator_id', $this->id)
                     ->orWhere('recipient_id', $this->id);
-//
-//                if ($this->type === UserType::BACK_OFFICE) {
-//                    $query->orWhereNull('recipient_id');
-//                }
+                //
+                //                if ($this->type === UserType::BACK_OFFICE) {
+                //                    $query->orWhereNull('recipient_id');
+                //                }
             })
             ->orderBy('updated_at', 'desc');
     }

@@ -11,13 +11,13 @@ use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
-use Spatie\LaravelPackageTools\Commands\InstallCommand;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use MathieuBretaud\FilamentMessenger\Livewire\Messages\Inbox;
 use MathieuBretaud\FilamentMessenger\Livewire\Messages\Messages;
 use MathieuBretaud\FilamentMessenger\Livewire\Messages\Search;
 use MathieuBretaud\FilamentMessenger\Testing\TestsFilamentMessenger;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class FilamentMessengerServiceProvider extends PackageServiceProvider
 {
